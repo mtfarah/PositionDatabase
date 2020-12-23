@@ -11,6 +11,7 @@ namespace PositionDatabase.Models
         public int Id { get; set; }
         public string EmployeeName { get; set; }
         public string EmployeeId { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
         public ICollection<Position> Positions { get; set; }
