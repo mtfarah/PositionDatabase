@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PositionDatabase.Data;
 using PositionDatabase.Models;
+using System.Linq;
 
 namespace PositionDatabase.Pages.Positions
 {
@@ -31,8 +32,13 @@ namespace PositionDatabase.Pages.Positions
             }).ToList();
 
             ContractTypeOptions = new List<SelectListItem>();
-            ContractTypeOptions.Add(new SelectListItem() { Value = CType.FullTime.ToString(), Text = CType.FullTime.ToString() });
-            ContractTypeOptions.Add(new SelectListItem() { Value = CType.PartTime.ToString(), Text = CType.PartTime.ToString() });
+
+            var enumValArray = Enum.GetValues(typeof(CType));
+            var cTypeEnumAray = enumValArray.OfType<CType>();
+            var alphaSortedArray = cTypeEnumAray.OrderBy(ele => ele.ToString());
+
+            foreach (var val in alphaSortedArray)
+                ContractTypeOptions.Add(new SelectListItem() { Value = val.ToString(), Text = val.ToString() });
 
             return Page();
         }
