@@ -29,12 +29,19 @@ namespace PositionDatabase.Pages.Positions
                 Value = d.SalaryScaleId.ToString(),
                 Text = d.StartDate.ToString("d") + " to " + d.EndDate.ToString("d")
             }).ToList();
+
+            ContractTypeOptions = new List<SelectListItem>();
+            ContractTypeOptions.Add(new SelectListItem() { Value = CType.FullTime.ToString(), Text = CType.FullTime.ToString() });
+            ContractTypeOptions.Add(new SelectListItem() { Value = CType.PartTime.ToString(), Text = CType.PartTime.ToString() });
+
             return Page();
         }
 
         [BindProperty]
         public Position Position { get; set; }
         public List<SelectListItem> SalaryScaleOptions { get; set; }
+        public List<SelectListItem> ContractTypeOptions { get; set; }
+
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.

@@ -31,6 +31,7 @@
             <div class="form-group">
                 <label asp-for="Position.ContractType" class="control-label"></label>
                 <select asp-for="Position.ContractType"
+                        asp-items="Model.ContractTypeOptions"
                         class="form-control">
 
                     <option selected="selected" value="">Please select</option>
@@ -49,7 +50,10 @@
 
             <div class="form-group">
                 <label asp-for="Position.PositionSalaryScales" class="control-label"></label>
-                <select multiple="multiple" asp-for="Position.PositionSalaryScales" asp-items="Model.SalaryScaleOptions" class="form-control form-control-sm">
+                <select multiple="multiple" 
+                        asp-for="Position.PositionSalaryScales" 
+                        asp-items="Model.SalaryScaleOptions" 
+                        class="form-control form-control-sm">
                     <option value="">Select a Salary scale...</option>
                 </select>
                 <span asp-validation-for="Position.PositionSalaryScales" class="text-danger"></span>
