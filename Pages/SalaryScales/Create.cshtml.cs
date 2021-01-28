@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using PositionDatabase.Data;
 using PositionDatabase.Models;
 
-namespace PositionDatabase.Pages.Persons
+namespace PositionDatabase.Pages.SalaryScales
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace PositionDatabase.Pages.Persons
         }
 
         [BindProperty]
-        public Person Person { get; set; }
+        public SalaryScale SalaryScale { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -36,7 +36,7 @@ namespace PositionDatabase.Pages.Persons
                 return Page();
             }
 
-            _context.Persons.Add(Person);
+            _context.SalaryScales.Add(SalaryScale);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

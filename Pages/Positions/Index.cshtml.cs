@@ -23,10 +23,8 @@ namespace PositionDatabase.Pages.Positions
 
         public async Task OnGetAsync()
         {
-            Position = await _context.Position
-               // .Include(c => c.Title)
-                //.AsNoTracking()
-                .ToListAsync();
+            Position = await _context.Positions
+                .Include(p => p.Person).ToListAsync();
         }
     }
 }

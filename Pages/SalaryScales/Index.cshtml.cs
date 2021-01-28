@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using PositionDatabase.Data;
 using PositionDatabase.Models;
 
-namespace PositionDatabase.Pages.Persons
+namespace PositionDatabase.Pages.SalaryScales
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +19,11 @@ namespace PositionDatabase.Pages.Persons
             _context = context;
         }
 
-        public IList<Person> Person { get;set; }
+        public IList<SalaryScale> SalaryScale { get;set; }
 
         public async Task OnGetAsync()
         {
-            Person = await _context.Persons.ToListAsync();
+            SalaryScale = await _context.SalaryScales.ToListAsync();
         }
     }
 }

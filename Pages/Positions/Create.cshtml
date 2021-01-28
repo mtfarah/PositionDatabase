@@ -30,13 +30,29 @@
             </div>
             <div class="form-group">
                 <label asp-for="Position.ContractType" class="control-label"></label>
-                <input asp-for="Position.ContractType" class="form-control" />
-                <span asp-validation-for="Position.ContractType" class="text-danger"></span>
+                <select asp-for="Position.ContractType"
+                        class="form-control">
+
+                    <option selected="selected" value="">Please select</option>
+                </select>
             </div>
+            <!-- asp-items="Html.GetEnumSelectList<CType>()"-->
+
+
+
             <div class="form-group">
-                <label asp-for="Position.StartDate" class="control-label"></label>
-                <input asp-for="Position.StartDate" class="form-control" />
-                <span asp-validation-for="Position.StartDate" class="text-danger"></span>
+                <label asp-for="Position.PersonId" class="control-label"></label>
+                <select asp-for="Position.PersonId" class="form-control" asp-items="ViewBag.PersonId"></select>
+            </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="Position.PositionSalaryScales" class="control-label"></label>
+                <select multiple="multiple" asp-for="Position.PositionSalaryScales" asp-items="Model.SalaryScaleOptions" class="form-control form-control-sm">
+                    <option value="">Select a Salary scale...</option>
+                </select>
+                <span asp-validation-for="Position.PositionSalaryScales" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using PositionDatabase.Data;
 using PositionDatabase.Models;
 
-namespace PositionDatabase.Pages.Positions
+namespace PositionDatabase.Pages.SalaryScales
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace PositionDatabase.Pages.Positions
         }
 
         [BindProperty]
-        public Position Position { get; set; }
+        public SalaryScale SalaryScale { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,14 +30,12 @@ namespace PositionDatabase.Pages.Positions
                 return NotFound();
             }
 
-            Position = await _context.Positions
-                .Include(p => p.Person).FirstOrDefaultAsync(m => m.PositionId == id);
+            SalaryScale = await _context.SalaryScales.FirstOrDefaultAsync(m => m.SalaryScaleId == id);
 
-            if (Position == null)
+            if (SalaryScale == null)
             {
                 return NotFound();
             }
-           ViewData["PersonId"] = new SelectList(_context.Persons, "PersonId", "PersonId");
             return Page();
         }
 
@@ -50,7 +48,7 @@ namespace PositionDatabase.Pages.Positions
                 return Page();
             }
 
-            _context.Attach(Position).State = EntityState.Modified;
+            _context.Attach(SalaryScale).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +56,7 @@ namespace PositionDatabase.Pages.Positions
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PositionExists(Position.PositionId))
+                if (!SalaryScaleExists(SalaryScale.SalaryScaleId))
                 {
                     return NotFound();
                 }
@@ -71,9 +69,9 @@ namespace PositionDatabase.Pages.Positions
             return RedirectToPage("./Index");
         }
 
-        private bool PositionExists(int id)
+        private bool SalaryScaleExists(int id)
         {
-            return _context.Positions.Any(e => e.PositionId == id);
+            return _context.SalaryScales.Any(e => e.SalaryScaleId == id);
         }
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using PositionDatabase.Data;
 using PositionDatabase.Models;
 
-namespace PositionDatabase.Pages.Positions
+namespace PositionDatabase.Pages.SalaryScales
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace PositionDatabase.Pages.Positions
         }
 
         [BindProperty]
-        public Position Position { get; set; }
+        public SalaryScale SalaryScale { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,10 +29,9 @@ namespace PositionDatabase.Pages.Positions
                 return NotFound();
             }
 
-            Position = await _context.Positions
-                .Include(p => p.Person).FirstOrDefaultAsync(m => m.PositionId == id);
+            SalaryScale = await _context.SalaryScales.FirstOrDefaultAsync(m => m.SalaryScaleId == id);
 
-            if (Position == null)
+            if (SalaryScale == null)
             {
                 return NotFound();
             }
@@ -46,11 +45,11 @@ namespace PositionDatabase.Pages.Positions
                 return NotFound();
             }
 
-            Position = await _context.Positions.FindAsync(id);
+            SalaryScale = await _context.SalaryScales.FindAsync(id);
 
-            if (Position != null)
+            if (SalaryScale != null)
             {
-                _context.Positions.Remove(Position);
+                _context.SalaryScales.Remove(SalaryScale);
                 await _context.SaveChangesAsync();
             }
 

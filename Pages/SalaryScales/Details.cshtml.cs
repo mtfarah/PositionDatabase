@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using PositionDatabase.Data;
 using PositionDatabase.Models;
 
-namespace PositionDatabase.Pages.Positions
+namespace PositionDatabase.Pages.SalaryScales
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace PositionDatabase.Pages.Positions
             _context = context;
         }
 
-        public Position Position { get; set; }
+        public SalaryScale SalaryScale { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,10 +28,9 @@ namespace PositionDatabase.Pages.Positions
                 return NotFound();
             }
 
-            Position = await _context.Positions
-                .Include(p => p.Person).FirstOrDefaultAsync(m => m.PositionId == id);
+            SalaryScale = await _context.SalaryScales.FirstOrDefaultAsync(m => m.SalaryScaleId == id);
 
-            if (Position == null)
+            if (SalaryScale == null)
             {
                 return NotFound();
             }

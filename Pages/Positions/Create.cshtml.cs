@@ -21,42 +21,44 @@ namespace PositionDatabase.Pages.Positions
 
         public IActionResult OnGet()
         {
-            //PositionDropDownList(_context);
+            ViewData["PersonId"] = new SelectList(_context.Persons, "PersonId", "EmployeeName");
+
+            //ViewData["PositionSalaryScales"] = new SelectList(_context.PositionSalaryScales, "PositionSalaryScaleId", "PositionSalaryScaleId");
+            SalaryScaleOptions = _context.SalaryScales.Select(d => new SelectListItem
+            {
+                Value = d.SalaryScaleId.ToString(),
+                Text = d.StartDate.ToString("d") + " to " + d.EndDate.ToString("d")
+            }).ToList();
             return Page();
         }
 
         [BindProperty]
         public Position Position { get; set; }
-
-
-      
+        public List<SelectListItem> SalaryScaleOptions { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            /*var emptyTitles = new Position();
-
-            if (await TryUpdateModelAsync<Position>(
-                 emptyTitles,
-                 "title",   // Prefix for form value.
-                 s => s.ID, s => s.Title, s => s.Description, s => s.Department, s => s.ContractType, s => s.StartDate))
-            {
-                _context.Position.Add(emptyTitles);
-                await _context.SaveChangesAsync();
-                return RedirectToPage("./Index");
-            }
-
-            // Select DepartmentID if TryUpdateModelAsync fails.
-            PositionDropDownList(_context, emptyTitles.ID);
-            return Page();*/
-
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Position.Add(Position);
+            _context.Positions.Add(Position);
+            await _context.SaveChangesAsync();
+
+            var positionSalaryScales = new List<PositionSalaryScale>();
+            foreach (var positionSalaryScale in Position.PositionSalaryScales)
+            {
+                positionSalaryScales.Add(new PositionSalaryScale
+                {
+                    PositionId = Position.PositionId,
+                    SalaryScaleId = positionSalaryScale.SalaryScaleId
+                });
+            }
+
+            _context.PositionSalaryScales.AddRange(positionSalaryScales);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

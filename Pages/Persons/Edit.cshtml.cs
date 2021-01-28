@@ -30,7 +30,7 @@ namespace PositionDatabase.Pages.Persons
                 return NotFound();
             }
 
-            Person = await _context.Person.FirstOrDefaultAsync(m => m.Id == id);
+            Person = await _context.Persons.FirstOrDefaultAsync(m => m.PersonId == id);
 
             if (Person == null)
             {
@@ -56,7 +56,7 @@ namespace PositionDatabase.Pages.Persons
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PersonExists(Person.Id))
+                if (!PersonExists(Person.PersonId))
                 {
                     return NotFound();
                 }
@@ -71,7 +71,7 @@ namespace PositionDatabase.Pages.Persons
 
         private bool PersonExists(int id)
         {
-            return _context.Person.Any(e => e.Id == id);
+            return _context.Persons.Any(e => e.PersonId == id);
         }
     }
 }

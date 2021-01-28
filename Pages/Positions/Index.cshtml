@@ -26,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.Position[0].ContractType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Position[0].StartDate)
+                @Html.DisplayNameFor(model => model.Position[0].Person)
             </th>
             <th></th>
         </tr>
@@ -47,12 +47,12 @@
                 @Html.DisplayFor(modelItem => item.ContractType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
+                @Html.DisplayFor(modelItem => item.Person.PersonId)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.PositionId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PositionId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PositionId">Delete</a>
             </td>
         </tr>
 }

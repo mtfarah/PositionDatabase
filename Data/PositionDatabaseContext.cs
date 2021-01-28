@@ -14,8 +14,28 @@ namespace PositionDatabase.Data
         {
         }
 
-        public DbSet<PositionDatabase.Models.Person> Person { get; set; }
+        public DbSet<Person> Persons { get; set; }
 
-        public DbSet<PositionDatabase.Models.Position> Position { get; set; }
+        public DbSet<Position> Positions { get; set; }
+
+        public DbSet<SalaryScale> SalaryScales { get; set; }
+
+        public DbSet<PositionSalaryScale> PositionSalaryScales { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PositionSalaryScale>()
+                .HasKey(pss => new { pss.PositionId, pss.SalaryScaleId });
+
+            modelBuilder.Entity<PositionSalaryScale>()
+                .HasOne(pss => pss.Position)
+                .WithMany(p => p.PositionSalaryScales)
+                .HasForeignKey(pss => pss.PositionId);
+
+            modelBuilder.Entity<PositionSalaryScale>()
+                .HasOne(pss => pss.SalaryScale)
+                .WithMany(ss => ss.PositionSalaryScales)
+                .HasForeignKey(pss => pss.SalaryScaleId);
+        }
     }
 }

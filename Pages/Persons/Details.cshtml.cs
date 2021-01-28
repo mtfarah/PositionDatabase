@@ -28,7 +28,7 @@ namespace PositionDatabase.Pages.Persons
                 return NotFound();
             }
 
-            Person = await _context.Person.FirstOrDefaultAsync(m => m.Id == id);
+            Person = await _context.Persons.FirstOrDefaultAsync(m => m.PersonId == id);
 
             if (Person == null)
             {

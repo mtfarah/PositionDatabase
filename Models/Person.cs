@@ -8,7 +8,8 @@ namespace PositionDatabase.Models
 {
     public class Person
     {
-        public int Id { get; set; }
+        [Key]
+        public int PersonId { get; set; }
         public string EmployeeName { get; set; }
         public string EmployeeId { get; set; }
         [DataType(DataType.Date)]
