@@ -1,0 +1,55 @@
+﻿@page
+@model PositionDatabase.Pages.TemporaryAPO.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TemporaryAPO</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TemporaryAPO.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TemporaryAPO.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TemporaryAPO.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TemporaryAPO.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TemporaryAPO.Department)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TemporaryAPO.Department)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TemporaryAPO.ContractType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TemporaryAPO.ContractType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TemporaryAPO.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TemporaryAPO.StartDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TemporaryAPO.Person)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TemporaryAPO.Person.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.TemporaryAPO.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

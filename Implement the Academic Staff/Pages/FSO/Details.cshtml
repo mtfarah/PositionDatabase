@@ -1,0 +1,55 @@
+﻿@page
+@model PositionDatabase.Pages.FSO.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>FSO</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FSO.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FSO.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FSO.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FSO.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FSO.Department)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FSO.Department)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FSO.ContractType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FSO.ContractType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FSO.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FSO.StartDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FSO.Person)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FSO.Person.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.FSO.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
